@@ -1,3 +1,10 @@
+/*
+ * @Author: lbt666 '1319451895@qq.com'
+ * @Date: 2022-07-12 11:14:33
+ * @LastEditors: lbt666 '1319451895@qq.com'
+ * @LastEditTime: 2022-07-12 11:31:16
+ * @Description: 
+ */
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -19,7 +26,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
           {TranslateString(262, 'Liquidity')}
         </ButtonMenuItem>
-        <ButtonMenuItem
+        {/* <ButtonMenuItem
           id="pool-nav-link"
           as="a"
           href="https://www.binance.org/en/bridge?utm_source=PancakeSwap"
@@ -27,7 +34,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
           rel="noreferrer noopener"
         >
           Bridge
-        </ButtonMenuItem>
+        </ButtonMenuItem> */}
       </ButtonMenu>
     </StyledNav>
   )
