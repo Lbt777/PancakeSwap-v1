@@ -1,3 +1,10 @@
+/*
+ * @Author: lbt666 '1319451895@qq.com'
+ * @Date: 2022-07-12 11:14:33
+ * @LastEditors: lbt666 '1319451895@qq.com'
+ * @LastEditTime: 2022-07-12 14:30:36
+ * @Description: 
+ */
 import React, { useContext } from 'react'
 import { Menu as UikitMenu } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
@@ -18,7 +25,6 @@ const Menu: React.FC = (props) => {
   const priceData = useGetPriceData()
   const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
   const profile = useGetLocalProfile()
-
   return (
     <UikitMenu
       links={links}
