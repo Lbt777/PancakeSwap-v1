@@ -119,14 +119,7 @@ function CurrencyRow({
           {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
             <Text>
               Added by user
-              <LinkStyledButton
-                onClick={(event) => {
-                  event.stopPropagation()
-                  if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
-                }}
-              >
-                (Remove)
-              </LinkStyledButton>
+              
             </Text>
           ) : null}
           {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
@@ -145,8 +138,18 @@ function CurrencyRow({
         </FadedSpan>
       </Column>
       <TokenTags currency={currency} />
-      <RowFixed style={{ justifySelf: 'flex-end' }}>
+      <RowFixed style={{ justifySelf: 'flex-end', flexDirection: 'column' }}>
         {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
+        {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
+            <LinkStyledButton
+            onClick={(event) => {
+              event.stopPropagation()
+              if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
+            }}
+          >
+            (Remove)
+          </LinkStyledButton>
+          ) : null}
       </RowFixed>
     </MenuItem>
   )

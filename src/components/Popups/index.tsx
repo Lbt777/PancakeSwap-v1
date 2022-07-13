@@ -1,3 +1,10 @@
+/*
+ * @Author: lbt666 '1319451895@qq.com'
+ * @Date: 2022-07-12 11:14:33
+ * @LastEditors: lbt666 '1319451895@qq.com'
+ * @LastEditTime: 2022-07-13 17:42:55
+ * @Description: 
+ */
 import React from 'react'
 import styled from 'styled-components'
 import { useActivePopups } from '../../state/application/hooks'
@@ -35,7 +42,8 @@ const FixedPopupColumn = styled(AutoColumn)`
   right: 1rem;
   max-width: 355px !important;
   width: 100%;
-  z-index: 2;
+  z-index: 100;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 
   ${({ theme }) => theme.mediaQueries.sm} {
     display: none;

@@ -82,13 +82,13 @@ export default function AddLiquidity({
   const [allowedSlippage] = useUserSlippageTolerance() // custom from users
   const [txHash, setTxHash] = useState<string>('')
 
-  // get formatted amounts
+  // 获取格式化金额
   const formattedAmounts = {
     [independentField]: typedValue,
     [dependentField]: noLiquidity ? otherTypedValue : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
 
-  // get the max amounts user can add
+  // 获取用户可以添加的最大金额
   const maxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
@@ -109,7 +109,7 @@ export default function AddLiquidity({
     {}
   )
 
-  // check whether the user has approved the router on the tokens
+  // 检查用户是否已批准token
   const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS)
   const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS)
 
@@ -135,6 +135,7 @@ export default function AddLiquidity({
     let method: (...args: any) => Promise<TransactionResponse>
     let args: Array<string | string[] | number>
     let value: BigNumber | null
+    console.log(router)
     if (currencyA === ETHER || currencyB === ETHER) {
       const tokenBIsBNB = currencyB === ETHER
       estimate = router.estimateGas.addLiquidityETH
@@ -184,7 +185,7 @@ export default function AddLiquidity({
       )
       .catch((e) => {
         setAttemptingTxn(false)
-        // we only care if the error is something _other_ than the user rejected the tx
+        // 用户拒绝
         if (e?.code !== 4001) {
           console.error(e)
         }
@@ -277,7 +278,7 @@ export default function AddLiquidity({
 
   const handleDismissConfirmation = useCallback(() => {
     setShowConfirm(false)
-    // if there was a tx hash, we want to clear the input
+    // 如果存在txHash，清除输入
     if (txHash) {
       onFieldAInput('')
     }
