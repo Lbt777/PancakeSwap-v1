@@ -40,16 +40,14 @@ export function ConfirmAddModalBottom({
       <RowBetween>
         <Text>Rates</Text>
         <Text>
-          {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${
-            currencies[Field.CURRENCY_B]?.symbol
-          }`}
+          {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${currencies[Field.CURRENCY_B]?.symbol
+            }`}
         </Text>
       </RowBetween>
       <RowBetween style={{ justifyContent: 'flex-end' }}>
         <Text>
-          {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
-            currencies[Field.CURRENCY_A]?.symbol
-          }`}
+          {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${currencies[Field.CURRENCY_A]?.symbol
+            }`}
         </Text>
       </RowBetween>
       <RowBetween>

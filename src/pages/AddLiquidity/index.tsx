@@ -49,8 +49,8 @@ export default function AddLiquidity({
 
   const oneCurrencyIsWBNB = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
+    ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
+      (currencyB && currencyEquals(currencyB, WETH[chainId])))
   )
   const expertMode = useIsExpertMode()
 
@@ -175,9 +175,8 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
-              currencies[Field.CURRENCY_A]?.symbol
-            } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
+            summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol
+              } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
           })
 
           setTxHash(response.hash)
@@ -195,9 +194,9 @@ export default function AddLiquidity({
   const modalHeader = () => {
     return noLiquidity ? (
       <AutoColumn gap="20px">
-        <LightCard mt="20px" borderRadius="20px">
+        <LightCard mt="20px" borderRadius="20px" padding="0">
           <RowFlat>
-            <UIKitText fontSize="48px" mr="8px">
+            <UIKitText fontSize="40px" mr="auto">
               {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol}`}
             </UIKitText>
             <DoubleCurrencyLogo
@@ -209,29 +208,28 @@ export default function AddLiquidity({
         </LightCard>
       </AutoColumn>
     ) : (
-      <AutoColumn gap="20px">
-        <RowFlat style={{ marginTop: '20px' }}>
-          <UIKitText fontSize="48px" mr="8px">
-            {liquidityMinted?.toSignificant(6)}
+        <AutoColumn gap="20px">
+          <RowFlat style={{ marginTop: '20px' }}>
+            <UIKitText fontSize="40px" mr="auto">
+              {liquidityMinted?.toSignificant(6)}
+            </UIKitText>
+            <DoubleCurrencyLogo
+              currency0={currencies[Field.CURRENCY_A]}
+              currency1={currencies[Field.CURRENCY_B]}
+              size={30}
+            />
+          </RowFlat>
+          <Row>
+            <UIKitText fontSize="24px">
+              {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} Pool Tokens`}
+            </UIKitText>
+          </Row>
+          <UIKitText small textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
+            {`Output is estimated. If the price changes by more than ${allowedSlippage / 100
+              }% your transaction will revert.`}
           </UIKitText>
-          <DoubleCurrencyLogo
-            currency0={currencies[Field.CURRENCY_A]}
-            currency1={currencies[Field.CURRENCY_B]}
-            size={30}
-          />
-        </RowFlat>
-        <Row>
-          <UIKitText fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} Pool Tokens`}
-          </UIKitText>
-        </Row>
-        <UIKitText small textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
-          {`Output is estimated. If the price changes by more than ${
-            allowedSlippage / 100
-          }% your transaction will revert.`}
-        </UIKitText>
-      </AutoColumn>
-    )
+        </AutoColumn>
+      )
   }
 
   const modalBottom = () => {
@@ -247,9 +245,8 @@ export default function AddLiquidity({
     )
   }
 
-  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
-    currencies[Field.CURRENCY_A]?.symbol
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencies[Field.CURRENCY_A]?.symbol
+    } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
 
   const handleCurrencyASelect = useCallback(
     (currA: Currency) => {
@@ -382,61 +379,61 @@ export default function AddLiquidity({
               {!account ? (
                 <ConnectWalletButton width="100%" />
               ) : (
-                <AutoColumn gap="md">
-                  {(approvalA === ApprovalState.NOT_APPROVED ||
-                    approvalA === ApprovalState.PENDING ||
-                    approvalB === ApprovalState.NOT_APPROVED ||
-                    approvalB === ApprovalState.PENDING) &&
-                    isValid && (
-                      <RowBetween>
-                        {approvalA !== ApprovalState.APPROVED && (
-                          <Button
-                            onClick={approveACallback}
-                            disabled={approvalA === ApprovalState.PENDING}
-                            style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
-                          >
-                            {approvalA === ApprovalState.PENDING ? (
-                              <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
-                            ) : (
-                              `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
-                            )}
-                          </Button>
-                        )}
-                        {approvalB !== ApprovalState.APPROVED && (
-                          <Button
-                            onClick={approveBCallback}
-                            disabled={approvalB === ApprovalState.PENDING}
-                            style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
-                          >
-                            {approvalB === ApprovalState.PENDING ? (
-                              <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
-                            ) : (
-                              `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
-                            )}
-                          </Button>
-                        )}
-                      </RowBetween>
-                    )}
-                  <Button
-                    onClick={() => {
-                      if (expertMode) {
-                        onAdd()
-                      } else {
-                        setShowConfirm(true)
+                  <AutoColumn gap="md">
+                    {(approvalA === ApprovalState.NOT_APPROVED ||
+                      approvalA === ApprovalState.PENDING ||
+                      approvalB === ApprovalState.NOT_APPROVED ||
+                      approvalB === ApprovalState.PENDING) &&
+                      isValid && (
+                        <RowBetween>
+                          {approvalA !== ApprovalState.APPROVED && (
+                            <Button
+                              onClick={approveACallback}
+                              disabled={approvalA === ApprovalState.PENDING}
+                              style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
+                            >
+                              {approvalA === ApprovalState.PENDING ? (
+                                <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
+                              ) : (
+                                  `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
+                                )}
+                            </Button>
+                          )}
+                          {approvalB !== ApprovalState.APPROVED && (
+                            <Button
+                              onClick={approveBCallback}
+                              disabled={approvalB === ApprovalState.PENDING}
+                              style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
+                            >
+                              {approvalB === ApprovalState.PENDING ? (
+                                <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                              ) : (
+                                  `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
+                                )}
+                            </Button>
+                          )}
+                        </RowBetween>
+                      )}
+                    <Button
+                      onClick={() => {
+                        if (expertMode) {
+                          onAdd()
+                        } else {
+                          setShowConfirm(true)
+                        }
+                      }}
+                      disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
+                      variant={
+                        !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
+                          ? 'danger'
+                          : 'primary'
                       }
-                    }}
-                    disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
-                    variant={
-                      !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
-                        ? 'danger'
-                        : 'primary'
-                    }
-                    width="100%"
-                  >
-                    {error ?? 'Supply'}
-                  </Button>
-                </AutoColumn>
-              )}
+                      width="100%"
+                    >
+                      {error ?? 'Supply'}
+                    </Button>
+                  </AutoColumn>
+                )}
             </AutoColumn>
           </CardBody>
         </Wrapper>
