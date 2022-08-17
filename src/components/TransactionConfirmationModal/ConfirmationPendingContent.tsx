@@ -7,7 +7,7 @@ import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
 
-const CustomLightSpinner = styled(Spinner)<{ size: string }>`
+const CustomLightSpinner = styled(Spinner) <{ size: string }>`
   height: ${({ size }) => size};
   width: ${({ size }) => size};
 `
@@ -18,7 +18,7 @@ const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPend
       <Section>
         <ContentHeader onDismiss={onDismiss}>Waiting for confirmation</ContentHeader>
         <ConfirmedIcon>
-          <CustomLightSpinner src="/images/blue-loader.svg" alt="loader" size="90px" />
+          <CustomLightSpinner src="./images/blue-loader.svg" alt="loader" size="90px" />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
           <AutoColumn gap="12px" justify="center">
