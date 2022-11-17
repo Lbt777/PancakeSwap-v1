@@ -2,7 +2,7 @@
  * @Author: lbt666 '1319451895@qq.com'
  * @Date: 2022-07-12 11:14:34
  * @LastEditors: lbt666 '1319451895@qq.com'
- * @LastEditTime: 2022-08-05 19:22:23
+ * @LastEditTime: 2022-11-17 14:04:27
  * @Description: 
  */
 import { useEffect } from 'react'
@@ -24,7 +24,7 @@ const useGetDocumentTitlePrice = () => {
 
   useEffect(() => {
     // document.title = `PancakeSwap${cakePriceUsdString}`
-    document.title = 'StarShow Swap'
+    document.title = '星际'
   }, [cakePriceUsdString])
 }
 export default useGetDocumentTitlePrice
